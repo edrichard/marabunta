@@ -1,5 +1,6 @@
 package com.akelio.marabunta.input.ant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputAnt {
@@ -8,7 +9,7 @@ public class InputAnt {
 	private int				type;
 	private int				stamina;
 	private int				stock;
-	private AntMemory			memory;
+	private AntMemory		memory;
 	private List<Pheromone>	pheromones;
 	private List<Food>		foods;
 	private List<Nest>		nests;
@@ -16,6 +17,10 @@ public class InputAnt {
 
 	public InputAnt() {
 		super();
+		pheromones = new ArrayList<>();
+		foods = new ArrayList<>();
+		nests = new ArrayList<>();
+		ants = new ArrayList<>();
 	}
 
 	public InputAnt(boolean attacked, int type, int stamina, int stock, AntMemory memory, List<Pheromone> pheromones, List<Food> foods, List<Nest> nests, List<Ant> ants) {
@@ -101,6 +106,22 @@ public class InputAnt {
 
 	public void setMemory(AntMemory memory) {
 		this.memory = memory;
+	}
+
+	public void addFood(Food food) {
+		foods.add(food);
+	}
+
+	public void addPheromone(Pheromone p) {
+		pheromones.add(p);
+	}
+
+	public void addAnt(Ant a) {
+		ants.add(a);
+	}
+
+	public void addNest(Nest n) {
+		nests.add(n);
 	}
 
 }

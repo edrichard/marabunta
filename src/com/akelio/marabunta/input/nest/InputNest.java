@@ -1,5 +1,6 @@
 package com.akelio.marabunta.input.nest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputNest {
@@ -7,10 +8,12 @@ public class InputNest {
 	private int				stock;
 	private List<AntCount>	antCounts;
 	private List<AntIn>		antIns;
-	private NestMemory			memory;
+	private NestMemory		memory;
 
 	public InputNest() {
 		super();
+		antCounts = new ArrayList<>();
+		antIns = new ArrayList<>();
 	}
 
 	public InputNest(int stock, List<AntCount> antCounts, List<AntIn> antIns, NestMemory memory) {
@@ -51,6 +54,14 @@ public class InputNest {
 
 	public void setMemory(NestMemory memory) {
 		this.memory = memory;
+	}
+
+	public void addAntCount(AntCount ac) {
+		antCounts.add(ac);
+	}
+
+	public void addAntIn(AntIn ai) {
+		antIns.add(ai);
 	}
 
 }
