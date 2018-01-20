@@ -3,6 +3,8 @@ package com.akelio.marabunta;
 public interface Const {
 	
 	String BEGIN_NEST = "BEGIN NEST";
+	String BEGIN_ANT = "BEGIN ANT";
+	String END = "END";
 	
 	String NI_STOCK  = "STOCK";
 	String NI_MEMORY = "MEMORY";
@@ -13,7 +15,6 @@ public interface Const {
 	String NA_ANT_OUT = "ANT_OUT";
 	String NA_SET_MEMORY = "SET_MEMORY";
 	
-	String BEGIN_ANT = "BEGIN ANT";
 	
 	String AI_TYPE = "TYPE";
 	String AI_MEMORY = "MEMORY";
