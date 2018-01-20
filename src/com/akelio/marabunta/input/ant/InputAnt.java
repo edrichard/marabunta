@@ -162,20 +162,4 @@ public class InputAnt {
 		}
 		return best;
 	}
-
-	public Pheromone getMyNearestPheromone() {
-		if (pheromones.isEmpty()) return null;
-
-		Pheromone best = null;
-		int dist = Integer.MAX_VALUE;
-
-		for (Pheromone pheromone : pheromones) {
-			if (pheromone.getType() == type && pheromone.getDist()<dist) {
-				best = pheromone;
-				dist = pheromone.getDist();
-			}
-		}
-		return best;
-	}
-
 }

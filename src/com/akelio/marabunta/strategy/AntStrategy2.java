@@ -17,8 +17,8 @@ public class AntStrategy2 extends AntStrategy {
 		AntMemory mem = input.getMemory();
 		Food bestFood = input.getBestFood();
 		Nest bestNest = input.getBestNest();
-		
-		Pheromone myNearestPh = input.getMyNearestPheromone();
+
+		Pheromone myNearestPh = getMyNearestPheromone(input);
 		List<Pheromone> myPheromones = getMyPheromones(input);
 
 		int t = mem.getM0();
@@ -122,5 +122,21 @@ public class AntStrategy2 extends AntStrategy {
 		for(Pheromone pheromone : input.getPheromones())  if(pheromone.getType()==phType)
 			list.add(pheromone);
 		return list;
+	}
+	
+
+	public Pheromone getMyNearestPheromone(InputAnt input) {
+		if (input.getPheromones().isEmpty()) return null;
+
+		Pheromone best = null;
+		int dist = Integer.MAX_VALUE;
+
+		for (Pheromone pheromone : input.getPheromones()) {
+			if (pheromone.getType() == input.getType() && pheromone.getDist()<dist) {
+				best = pheromone;
+				dist = pheromone.getDist();
+			}
+		}
+		return best;
 	}
 }

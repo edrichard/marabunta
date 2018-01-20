@@ -18,7 +18,7 @@ public class AntStrategy1a extends AntStrategy {
 		Food bestFood = input.getBestFood();
 		Nest bestNest = input.getBestNest();
 		
-		Pheromone myNearestPh = input.getMyNearestPheromone();
+		Pheromone myNearestPh = getMyNearestPheromone(input);
 		List<Pheromone> myPheromones = getMyPheromones(input);
 		List<Pheromone> pathPheromones = getPathPheromones(input);
 
@@ -117,6 +117,21 @@ public class AntStrategy1a extends AntStrategy {
 	}
 	
 	
+	
+	public Pheromone getMyNearestPheromone(InputAnt input) {
+		if (input.getPheromones().isEmpty()) return null;
+
+		Pheromone best = null;
+		int dist = Integer.MAX_VALUE;
+
+		for (Pheromone pheromone : input.getPheromones()) {
+			if (pheromone.getType() == getPheromoneType(input) && pheromone.getDist()<dist) {
+				best = pheromone;
+				dist = pheromone.getDist();
+			}
+		}
+		return best;
+	}
 	
 	
 	private List<Pheromone> getMyPheromones(InputAnt input) {
