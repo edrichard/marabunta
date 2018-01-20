@@ -33,7 +33,7 @@ public class AntStrategy1 extends AntStrategy {
 			 return;
 		 }
 		 
-		 // nouriture à portée : on collecte
+		 // nouriture a portee : on collecte
 		 int amount = Math.min(bestFood.getAmount(), input.getStockLeft());
 		 if(amount>0) {
 			_collect(bestFood.getId(), amount);
