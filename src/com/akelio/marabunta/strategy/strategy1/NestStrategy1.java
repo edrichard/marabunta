@@ -8,6 +8,9 @@ import com.akelio.marabunta.strategy.NestStrategy;
 
 public class NestStrategy1 extends NestStrategy {
 	
+	public static final int ANT_MAXNB = 40;
+	public static final int STOCK_MIN = 50;
+	
 
 	public void process(InputNest input) {
 
@@ -24,7 +27,7 @@ public class NestStrategy1 extends NestStrategy {
 			return;
 		}
 
-		if(t<20 && input.getStock()>50) {
+		if(t<ANT_MAXNB && input.getStock()>STOCK_MIN) {
 			Debug.d("_newAnt");
 			setMemory(t+1);
 			_newAnt(t);
