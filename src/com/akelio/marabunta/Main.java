@@ -22,6 +22,7 @@ public class Main {
 	
 	private static void handleNest(Scanner s) {
 		String info = "";
+		
 		while(!info.equals("END")) {
 			info = s.nextLine();
 			System.out.println(info);
