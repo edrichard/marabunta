@@ -7,15 +7,15 @@ import com.akelio.marabunta.Const;
 
 public class InputAnt {
 
-	private boolean			attacked = false;
-	private int				type;
-	private int				stamina;
-	private int				stock;
-	private AntMemory		memory;
-	private List<Pheromone>	pheromones;
-	private List<Food>		foods;
-	private List<Nest>		nests;
-	private List<Ant>		ants;
+	private boolean attacked = false;
+	private int type;
+	private int stamina;
+	private int stock;
+	private AntMemory memory;
+	private List<Pheromone> pheromones;
+	private List<Food> foods;
+	private List<Nest> nests;
+	private List<Ant> ants;
 
 	public InputAnt() {
 		super();
@@ -24,7 +24,6 @@ public class InputAnt {
 		nests = new ArrayList<>();
 		ants = new ArrayList<>();
 	}
-
 
 	public boolean isAttacked() {
 		return attacked;
@@ -53,9 +52,9 @@ public class InputAnt {
 	public int getStock() {
 		return stock;
 	}
-	
+
 	public int getStockLeft() {
-		return Const.ANT_STOCK_MAX-stock;
+		return Const.ANT_STOCK_MAX - stock;
 	}
 
 	public void setStock(int stock) {
@@ -117,63 +116,87 @@ public class InputAnt {
 	public void addNest(Nest n) {
 		nests.add(n);
 	}
-	
-	
-	
-	
+
 	public Food getBestFood() {
-		if(foods.isEmpty()) return null;
-		
+		if (foods.isEmpty())
+			return null;
+
 		Food best = foods.get(0);
 		int nb = foods.size();
-		
-		for(int i=1;i<nb;i++) {
+
+		for (int i = 1; i < nb; i++) {
 			Food food = foods.get(i);
-			if(food.isNear()) {
-				if(best.isFar()) best = food;
+			if (food.isNear()) {
+				if (best.isFar())
+					best = food;
 				else {
-					if(food.getAmount()>best.getAmount()) best = food;
+					if (food.getAmount() > best.getAmount())
+						best = food;
 				}
-			}
-			else {
-				if(best.isFar()) {
-					if(food.getAmount()>best.getAmount()) best = food;
+			} else {
+				if (best.isFar()) {
+					if (food.getAmount() > best.getAmount())
+						best = food;
 				}
 			}
 		}
-		
+
 		return best;
 	}
-	
-	
+
 	public Nest getBestNest() {
-		if(nests.isEmpty()) return null;
-		
+		if (nests.isEmpty())
+			return null;
+
 		Nest best = null;
 		int dist = Integer.MAX_VALUE;
-		
-		for(Nest nest : nests) {
-			if(nest.isFriend()) continue;
-			
-			if(nest.getDist()<dist) {
+
+		for (Nest nest : nests) {
+			if (nest.isFriend())
+				continue;
+
+			if (nest.getDist() < dist) {
 				best = nest;
 				dist = nest.getDist();
 			}
 		}
 		return best;
 	}
-	
-	
+
+	public Pheromone getNearestPheromone() {
+		if (pheromones.isEmpty())
+			return null;
+
+		Pheromone best = null;
+
+		for (Pheromone pheromone : pheromones) {
+			if (best == null) {
+				if (pheromone.getType() == type) {
+					best = pheromone;
+					continue;
+				}
+			} else {
+				if(best.isFar() && pheromone.getType()==type && pheromone.isNear()){
+					best = pheromone;
+				}else if(pheromone.getType()==type && best.getDist() > pheromone.getDist()){
+					best = pheromone;
+				}
+			}
+		}
+		return best;
+	}
+
 	public Pheromone getOldestPheromone() {
-		if(pheromones.isEmpty()) return null;
-		
+		if (pheromones.isEmpty())
+			return null;
+
 		Pheromone best = null;
 		int bestPersistance = 100;
-		
-		for(Pheromone pheromone : pheromones) {
+
+		for (Pheromone pheromone : pheromones) {
 			int persistance = pheromone.getPersistance();
-			
-			if(persistance<bestPersistance) {
+
+			if (persistance < bestPersistance) {
 				bestPersistance = persistance;
 				best = pheromone;
 			}
