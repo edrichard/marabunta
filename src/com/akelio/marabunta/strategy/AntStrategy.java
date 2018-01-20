@@ -2,7 +2,7 @@ package com.akelio.marabunta.strategy;
 
 import com.akelio.marabunta.input.ant.InputAnt;
 
-public interface AntStrategy {
+public abstract class AntStrategy {
 
-	public void process(InputAnt input);
+	public abstract void process(InputAnt input);
 }

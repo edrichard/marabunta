@@ -2,7 +2,7 @@ package com.akelio.marabunta.strategy;
 
 import com.akelio.marabunta.input.nest.InputNest;
 
-public interface NestStrategy {
+public abstract class NestStrategy {
 
-	public void process(InputNest input);
+	public abstract void process(InputNest input);
 }
