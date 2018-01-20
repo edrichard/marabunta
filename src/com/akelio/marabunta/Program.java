@@ -50,7 +50,6 @@ public class Program {
 		String info = s.nextLine();
 		
 		while (!info.equals(Const.END)) {
-			inputNest = new InputNest();
 			String[] n = info.split(" ");
 
 			switch (n[0]) {
