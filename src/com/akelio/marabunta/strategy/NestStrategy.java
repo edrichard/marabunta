@@ -22,7 +22,7 @@ public abstract class NestStrategy {
 	protected void setMemory(int... memory) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < 20; i++) {
-			sb.append(memory.length < i ? memory[i] : 0);
+			sb.append(memory.length > i ? memory[i] : 0);
 			sb.append(" ");
 		}
 		p(Const.NA_SET_MEMORY + " " + sb.toString().trim());
