@@ -2,6 +2,7 @@ package com.akelio.marabunta.strategy.strategy1;
 
 import java.util.List;
 
+import com.akelio.marabunta.Debug;
 import com.akelio.marabunta.input.ant.AntMemory;
 import com.akelio.marabunta.input.ant.Food;
 import com.akelio.marabunta.input.ant.InputAnt;
@@ -10,7 +11,7 @@ import com.akelio.marabunta.strategy.AntStrategy;
 public class AntStrategy1 extends AntStrategy {
 
 	public void process(InputAnt input) {
-		System.err.println("AntStrategy1:process");
+		Debug.d("AntStrategy1:process");
 		
 		 AntMemory mem = input.getMemory();
 		 Food bestFood = input.getBestFood();

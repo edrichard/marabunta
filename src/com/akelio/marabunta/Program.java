@@ -25,7 +25,7 @@ public class Program {
 		this.antStrategy = antStrategy;
 		this.nestStrategy = nestStrategy;
 
-		System.err.println("Program started");
+		Debug.d("Program started");
 		
 		Scanner s = new Scanner(System.in);
 		
