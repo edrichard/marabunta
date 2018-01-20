@@ -65,19 +65,9 @@ public class InputAnt {
 		return pheromones;
 	}
 	
-	public List<Pheromone> getMyPheromones() {
-		List<Pheromone> list = new ArrayList<>();
-		for(Pheromone pheromone : pheromones)  if(pheromone.getType()==type*10)
-			list.add(pheromone);
-		return list;
-	}
 	
-	public List<Pheromone> getPathPheromones() {
-		List<Pheromone> list = new ArrayList<>();
-		for(Pheromone pheromone : pheromones)  if(pheromone.getType()>511)
-			list.add(pheromone);
-		return list;
-	}
+	
+	
 
 	public void setPheromones(List<Pheromone> pheromones) {
 		this.pheromones = pheromones;
@@ -165,10 +155,7 @@ public class InputAnt {
 		int dist = Integer.MAX_VALUE;
 
 		for (Nest nest : nests) {
-			if (!nest.isFriend())
-				continue;
-
-			if (nest.getDist() < dist) {
+			if (nest.isFriend() && nest.getDist() < dist) {
 				best = nest;
 				dist = nest.getDist();
 			}
@@ -190,23 +177,5 @@ public class InputAnt {
 		}
 		return best;
 	}
-
-//	public Pheromone getOldestPheromone() {
-//		if (pheromones.isEmpty())
-//			return null;
-//
-//		Pheromone best = null;
-//		int bestPersistance = 100;
-//
-//		for (Pheromone pheromone : pheromones) {
-//			int persistance = pheromone.getPersistance();
-//
-//			if (persistance < bestPersistance) {
-//				bestPersistance = persistance;
-//				best = pheromone;
-//			}
-//		}
-//		return best;
-//	}
 
 }

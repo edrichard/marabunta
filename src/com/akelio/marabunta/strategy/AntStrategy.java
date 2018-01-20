@@ -21,6 +21,10 @@ public abstract class AntStrategy {
 	protected void _explore() {
 		p(Const.AA_EXPLORE);
 	}
+	protected void _exploreD(int n) {
+		Debug.d("explore "+n);
+		p(Const.AA_EXPLORE);
+	}
 	
 	protected void _putPheromone(int type) {
 		p(Const.AA_PUT_PHEROMONE+" "+type);

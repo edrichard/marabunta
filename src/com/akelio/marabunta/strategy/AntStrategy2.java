@@ -1,5 +1,6 @@
 package com.akelio.marabunta.strategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.akelio.marabunta.Debug;
@@ -12,15 +13,13 @@ import com.akelio.marabunta.input.ant.Pheromone;
 public class AntStrategy2 extends AntStrategy {
 
 	public void process(InputAnt input) {
-		Debug.d("AntStrategy1:process");
 
 		AntMemory mem = input.getMemory();
 		Food bestFood = input.getBestFood();
 		Nest bestNest = input.getBestNest();
 		
 		Pheromone myNearestPh = input.getMyNearestPheromone();
-		List<Pheromone> myPheromones = input.getMyPheromones();
-		List<Pheromone> pathPheromones = input.getPathPheromones();
+		List<Pheromone> myPheromones = getMyPheromones(input);
 
 		int t = mem.getM0();
 		int r = mem.getM1();
@@ -62,7 +61,7 @@ public class AntStrategy2 extends AntStrategy {
 					else r++;
 					
 					setMemory(t,r);
-					_changePheromone(myNearestPh.getId(), input.getType()*10 + r);
+					_changePheromone(myNearestPh.getId(), 1023 - input.getType());
 					return;
 				}
 				setMemory(t,r);
@@ -114,5 +113,14 @@ public class AntStrategy2 extends AntStrategy {
 			_collect(bestFood.getId(), amount);
 			return;
 		}
+	}
+	
+	
+	private List<Pheromone> getMyPheromones(InputAnt input) {
+		int phType = input.getType();
+		List<Pheromone> list = new ArrayList<>();
+		for(Pheromone pheromone : input.getPheromones())  if(pheromone.getType()==phType)
+			list.add(pheromone);
+		return list;
 	}
 }

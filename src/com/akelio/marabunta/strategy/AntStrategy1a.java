@@ -1,5 +1,6 @@
 package com.akelio.marabunta.strategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.akelio.marabunta.Debug;
@@ -12,15 +13,14 @@ import com.akelio.marabunta.input.ant.Pheromone;
 public class AntStrategy1a extends AntStrategy {
 
 	public void process(InputAnt input) {
-		Debug.d("AntStrategy1:process");
 
 		AntMemory mem = input.getMemory();
 		Food bestFood = input.getBestFood();
 		Nest bestNest = input.getBestNest();
 		
 		Pheromone myNearestPh = input.getMyNearestPheromone();
-		List<Pheromone> myPheromones = input.getMyPheromones();
-		List<Pheromone> pathPheromones = input.getPathPheromones();
+		List<Pheromone> myPheromones = getMyPheromones(input);
+		List<Pheromone> pathPheromones = getPathPheromones(input);
 
 		int t = mem.getM0();
 		int r = mem.getM1();
@@ -48,7 +48,7 @@ public class AntStrategy1a extends AntStrategy {
 			}
 			if(myPheromones.isEmpty()) {
 				setMemory(t,r);
-				_explore();
+				_exploreD(1);
 				return;
 			}
 			if(myPheromones.size()==1) {
@@ -70,7 +70,7 @@ public class AntStrategy1a extends AntStrategy {
 				return;
 			}
 			setMemory(t,r);
-			_explore();
+			_exploreD(2);
 			return;
 		}
 		
@@ -90,7 +90,7 @@ public class AntStrategy1a extends AntStrategy {
 		if(foods.isEmpty()) {
 			// aucune nouriture en vue : on explore
 			setMemory(t,r);
-			_explore();
+			_exploreD(3);
 			
 			if(t>400) {
 				suicide();
@@ -114,5 +114,27 @@ public class AntStrategy1a extends AntStrategy {
 			_collect(bestFood.getId(), amount);
 			return;
 		}
+	}
+	
+	
+	
+	
+	private List<Pheromone> getMyPheromones(InputAnt input) {
+		int phType = getPheromoneType(input);
+		List<Pheromone> list = new ArrayList<>();
+		for(Pheromone pheromone : input.getPheromones())  if(pheromone.getType()==phType)
+			list.add(pheromone);
+		return list;
+	}
+	
+	private int getPheromoneType(InputAnt input) {
+		return input.getType()*10;
+	}
+	
+	public List<Pheromone> getPathPheromones(InputAnt input) {
+		List<Pheromone> list = new ArrayList<>();
+		for(Pheromone pheromone : input.getPheromones())  if(pheromone.getType()>511)
+			list.add(pheromone);
+		return list;
 	}
 }
