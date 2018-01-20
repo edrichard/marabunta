@@ -22,7 +22,11 @@ public class NestStrategy1 extends NestStrategy {
 		if(ONE) {
 			if(t==1) {_newAnt(1);return;}
 			if(t==2) {_antOut(1,5,0,0);return;}
+			
+			return;
 		}
+		
+		
 		
 		AntCount antCount = input.getExistingAntType();
 		Debug.d("antCount="+antCount);
