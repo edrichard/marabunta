@@ -67,7 +67,7 @@ public class InputAnt {
 	
 	public List<Pheromone> getMyPheromones() {
 		List<Pheromone> list = new ArrayList<>();
-		for(Pheromone pheromone : pheromones)  if(pheromone.getType()==type)
+		for(Pheromone pheromone : pheromones)  if(pheromone.getType()==type*10)
 			list.add(pheromone);
 		return list;
 	}
