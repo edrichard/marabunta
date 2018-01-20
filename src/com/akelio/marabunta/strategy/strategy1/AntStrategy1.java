@@ -13,11 +13,7 @@ public class AntStrategy1 extends AntStrategy {
 		
 		 AntMemory mem = input.getMemory();
 		 Food bestFood = input.getBestFood();
-		 int state = mem.getM0();
 		 
-		 if(state==0) return;
-		 
-		 // state=1 (dehors)
 		 
 		 List<Food> foods = input.getFoods();
 		 
