@@ -152,14 +152,13 @@ public class InputAnt {
 	}
 
 	public Nest getBestNest() {
-		if (nests.isEmpty())
-			return null;
+		if (nests.isEmpty()) return null;
 
 		Nest best = null;
 		int dist = Integer.MAX_VALUE;
 
 		for (Nest nest : nests) {
-			if (nest.isFriend())
+			if (!nest.isFriend())
 				continue;
 
 			if (nest.getDist() < dist) {
