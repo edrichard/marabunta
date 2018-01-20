@@ -27,4 +27,8 @@ public abstract class NestStrategy {
 		}
 		p(Const.NA_SET_MEMORY + " " + sb.toString().trim());
 	}
+	
+	public void end() {
+		p(Const.END);
+	}
 }

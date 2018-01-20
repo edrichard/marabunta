@@ -25,15 +25,20 @@ public class Program {
 		this.antStrategy = antStrategy;
 		this.nestStrategy = nestStrategy;
 		
+		Scanner s = new Scanner(System.in);
+		
 		while(true) {
-			Scanner s = new Scanner(System.in);
 			String first = s.nextLine();
 	
 			switch (first) {
 				case Const.BEGIN_ANT:
 					handleAnt(s);
+					s.close();
+					break;
 				case Const.BEGIN_NEST:
 					handleNest(s);
+					s.close();
+					break;
 				default:
 					throw new RuntimeException("Invalid begin line received: " + first);
 			}
@@ -55,9 +60,12 @@ public class Program {
 					inputNest.addAntIn(new AntIn(toInt(n[1]), toInt(n[2]), toInt(n[3])));
 					break;
 				case Const.NI_MEMORY:
-					NestMemory nm = new NestMemory(toInt(n[1]), toInt(n[2]), toInt(n[3]), toInt(n[4]), toInt(n[5]), toInt(n[6]), toInt(n[7]), toInt(n[8]), toInt(n[9]), toInt(n[10]), toInt(n[11]),
-							toInt(n[12]), toInt(n[13]), toInt(n[14]), toInt(n[15]), toInt(n[16]), toInt(n[17]), toInt(n[18]), toInt(n[19]), toInt(n[20]));
-					inputNest.setMemory(nm);
+					inputNest.setMemory(new NestMemory(
+							toInt(n[1]), toInt(n[2]), toInt(n[3]), toInt(n[4]), 
+							toInt(n[5]), toInt(n[6]), toInt(n[7]), toInt(n[8]), 
+							toInt(n[9]), toInt(n[10]), toInt(n[11]), toInt(n[12]), 
+							toInt(n[13]), toInt(n[14]), toInt(n[15]), toInt(n[16]), 
+							toInt(n[17]), toInt(n[18]), toInt(n[19]), toInt(n[20])));
 					break;
 				case Const.NI_STOCK:
 					inputNest.setStock(toInt(n[1]));
@@ -67,8 +75,10 @@ public class Program {
 		
 		if(nestStrategy!=null) {
 			nestStrategy.process(inputNest);
+			nestStrategy.end();
 		}
 	}
+	
 
 	private void handleAnt(Scanner s) {
 		String info = "";
@@ -113,6 +123,7 @@ public class Program {
 		
 		if(antStrategy!=null) {
 			antStrategy.process(inputAnt);
+			antStrategy.end();
 		}
 	}
 
