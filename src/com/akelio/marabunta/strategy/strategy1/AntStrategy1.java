@@ -23,7 +23,8 @@ public class AntStrategy1 extends AntStrategy {
 		List<Pheromone> myPheromones = input.getMyPheromones();
 
 		int t = mem.getM0()+1;
-		setMemory(t%256,mem.getM1());
+		Debug.d("ant-t="+t);
+		if(t<256) setMemory(t,0);
 		
 		if(input.getStock()>100) {
 			// rentrer au nid

@@ -16,8 +16,8 @@ public class NestStrategy1 extends NestStrategy {
 		NestMemory mem = input.getMemory();
 		
 		int t = mem.getM0()+1;
-		Debug.d("t="+t);
-		setMemory(t%256);
+		Debug.d("nest-t="+t);
+		if(t<256) setMemory(t);
 		
 		if(ONE) {
 			if(t==1) {_newAnt(1);return;}

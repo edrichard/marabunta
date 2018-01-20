@@ -1,14 +1,19 @@
 package com.akelio.marabunta.strategy;
 
 import com.akelio.marabunta.Const;
+import com.akelio.marabunta.Debug;
 import com.akelio.marabunta.input.nest.InputNest;
 
 public abstract class NestStrategy {
+	
+	public static final boolean PRINT = false;
+	
 
 	public abstract void process(InputNest input);
 
 	private void p(String line) {
 		System.out.println(line);
+		if(PRINT) Debug.d(line);
 	}
 
 	protected void _newAnt(int type) {
