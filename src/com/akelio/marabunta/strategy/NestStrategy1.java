@@ -1,10 +1,9 @@
-package com.akelio.marabunta.strategy.strategy1;
+package com.akelio.marabunta.strategy;
 
 import com.akelio.marabunta.Debug;
 import com.akelio.marabunta.input.nest.AntCount;
 import com.akelio.marabunta.input.nest.InputNest;
 import com.akelio.marabunta.input.nest.NestMemory;
-import com.akelio.marabunta.strategy.NestStrategy;
 
 public class NestStrategy1 extends NestStrategy {
 	
@@ -20,7 +19,6 @@ public class NestStrategy1 extends NestStrategy {
 		int t = mem.getM0();
 		
 		AntCount antCount = input.getExistingAntType();
-		Debug.d("antCount="+antCount);
 		if(antCount!=null && antCount.getQuantity()>0) {
 			Debug.d("performing _antOut");
 			_antOut(antCount.getType(),5,0,0);

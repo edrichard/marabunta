@@ -1,4 +1,4 @@
-package com.akelio.marabunta.strategy.strategy2;
+package com.akelio.marabunta.strategy;
 
 import java.util.List;
 
@@ -8,9 +8,8 @@ import com.akelio.marabunta.input.ant.Food;
 import com.akelio.marabunta.input.ant.InputAnt;
 import com.akelio.marabunta.input.ant.Nest;
 import com.akelio.marabunta.input.ant.Pheromone;
-import com.akelio.marabunta.strategy.AntStrategy;
 
-public class AntStrategy2 extends AntStrategy {
+public class AntStrategy1 extends AntStrategy {
 
 	public void process(InputAnt input) {
 		Debug.d("AntStrategy1:process");
@@ -21,17 +20,10 @@ public class AntStrategy2 extends AntStrategy {
 		
 		Pheromone myNearestPh = input.getMyNearestPheromone();
 		List<Pheromone> myPheromones = input.getMyPheromones();
-		List<Pheromone> pathPheromones = input.getPathPheromones();
 
-		int t = mem.getM0();
-		int r = mem.getM1();
-		
-		t++;
-		if(t==256) t=0;
-		
+		int t = mem.getM0()+1;
 		Debug.d("ant-t="+t);
-		
-		
+		if(t<256) setMemory(t,0);
 		
 		if(input.getStock()>100) {
 			// rentrer au nid
@@ -39,50 +31,37 @@ public class AntStrategy2 extends AntStrategy {
 			
 			if(bestNest!=null) {
 				if(bestNest.isNear()) {
-					setMemory(t,r);
 					_nest(bestNest.getId());
 					return;
 				}
-				setMemory(t,r);
 				_moveTo(bestNest.getId());
 				return;
 			}
 			if(myPheromones.isEmpty()) {
-				setMemory(t,r);
 				_explore();
 				return;
 			}
 			if(myPheromones.size()==1) {
-				setMemory(t,r);
 				_moveTo(myPheromones.get(0).getId());
 				return;
 			}
 			if(myNearestPh!=null){
 				if(myNearestPh.isNear()) {
-					if(r==10) r=1;
-					else r++;
-					
-					setMemory(t,r);
-					_changePheromone(myNearestPh.getId(), input.getType()*10 + r);
+					_changePheromone(myNearestPh.getId(), 1023 - input.getType());
 					return;
 				}
-				setMemory(t,r);
 				_moveTo(myNearestPh.getId());
 				return;
 			}
-			setMemory(t,r);
 			_explore();
 			return;
 		}
 		
 		// rechercher de la nourriture
 		
-		
-		
 		// on place une pheromone tous les 3 tours
 		if(t%3==0) {
-			setMemory(t,r);
-			_putPheromone(input.getType()*10);
+			_putPheromone(input.getType());
 			return;
 		}
 
@@ -90,7 +69,6 @@ public class AntStrategy2 extends AntStrategy {
 
 		if(foods.isEmpty()) {
 			// aucune nouriture en vue : on explore
-			setMemory(t,r);
 			_explore();
 			
 			if(t>40) {
@@ -102,7 +80,6 @@ public class AntStrategy2 extends AntStrategy {
 
 		if(!bestFood.isNear()) {
 			// nouriture en vue : on se rapproche
-			setMemory(t,r);
 			_moveTo(bestFood.getId());
 			return;
 		}
