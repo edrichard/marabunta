@@ -24,6 +24,8 @@ public class Program {
 	public Program(AntStrategy antStrategy, NestStrategy nestStrategy) {
 		this.antStrategy = antStrategy;
 		this.nestStrategy = nestStrategy;
+
+		System.err.println("Program started");
 		
 		Scanner s = new Scanner(System.in);
 		
