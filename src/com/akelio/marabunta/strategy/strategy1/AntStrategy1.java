@@ -18,11 +18,11 @@ public class AntStrategy1 extends AntStrategy {
 		AntMemory mem = input.getMemory();
 		Food bestFood = input.getBestFood();
 		Nest bestNest = input.getBestNest();
-		Pheromone oldestPh = input.getOldestPheromone();
-		Pheromone nearestPh = input.getNearestPheromone();
+		
+		Pheromone myNearestPh = input.getMyNearestPheromone();
+		List<Pheromone> myPheromones = input.getMyPheromones();
 
 		int t = mem.getM0()+1;
-
 		setMemory(t%256,mem.getM1());
 		
 		if(input.getStock()>100) {
@@ -37,12 +37,16 @@ public class AntStrategy1 extends AntStrategy {
 				_moveTo(bestNest.getId());
 				return;
 			}
-			if(nearestPh!=null) {
-				if(nearestPh.getDist() <= 10){
-					_changePheromone(nearestPh.getId(), 1023 - input.getType());
-					return;
-				}
-				_moveTo(nearestPh.getId());
+			if(myPheromones.isEmpty()) {
+				_explore();
+				return;
+			}
+			if(myPheromones.size()==1) {
+				_moveTo(myPheromones.get(0).getId());
+				return;
+			}
+			if(myNearestPh!=null){
+				_changePheromone(myNearestPh.getId(), 1023 - input.getType());
 				return;
 			}
 			_explore();

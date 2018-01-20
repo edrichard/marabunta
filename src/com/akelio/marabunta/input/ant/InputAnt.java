@@ -64,6 +64,13 @@ public class InputAnt {
 	public List<Pheromone> getPheromones() {
 		return pheromones;
 	}
+	
+	public List<Pheromone> getMyPheromones() {
+		List<Pheromone> list = new ArrayList<>();
+		for(Pheromone pheromone : pheromones)  if(pheromone.getType()==type)
+			list.add(pheromone);
+		return list;
+	}
 
 	public void setPheromones(List<Pheromone> pheromones) {
 		this.pheromones = pheromones;
@@ -163,45 +170,37 @@ public class InputAnt {
 		return best;
 	}
 
-	public Pheromone getNearestPheromone() {
-		if (pheromones.isEmpty())
-			return null;
+	public Pheromone getMyNearestPheromone() {
+		if (pheromones.isEmpty()) return null;
 
 		Pheromone best = null;
+		int dist = Integer.MAX_VALUE;
 
 		for (Pheromone pheromone : pheromones) {
-			if (best == null) {
-				if (pheromone.getType() == type) {
-					best = pheromone;
-					continue;
-				}
-			} else {
-				if(best.isFar() && pheromone.getType()==type && pheromone.isNear()){
-					best = pheromone;
-				}else if(pheromone.getType()==type && best.getDist() > pheromone.getDist()){
-					best = pheromone;
-				}
-			}
-		}
-		return best;
-	}
-
-	public Pheromone getOldestPheromone() {
-		if (pheromones.isEmpty())
-			return null;
-
-		Pheromone best = null;
-		int bestPersistance = 100;
-
-		for (Pheromone pheromone : pheromones) {
-			int persistance = pheromone.getPersistance();
-
-			if (persistance < bestPersistance) {
-				bestPersistance = persistance;
+			if (pheromone.getType() == type && pheromone.getDist()<dist) {
 				best = pheromone;
+				dist = pheromone.getDist();
 			}
 		}
 		return best;
 	}
+
+//	public Pheromone getOldestPheromone() {
+//		if (pheromones.isEmpty())
+//			return null;
+//
+//		Pheromone best = null;
+//		int bestPersistance = 100;
+//
+//		for (Pheromone pheromone : pheromones) {
+//			int persistance = pheromone.getPersistance();
+//
+//			if (persistance < bestPersistance) {
+//				bestPersistance = persistance;
+//				best = pheromone;
+//			}
+//		}
+//		return best;
+//	}
 
 }
