@@ -47,7 +47,11 @@ public class AntStrategy1 extends AntStrategy {
 				return;
 			}
 			if(myNearestPh!=null){
-				_changePheromone(myNearestPh.getId(), 1023 - input.getType());
+				if(myNearestPh.isNear()) {
+					_changePheromone(myNearestPh.getId(), 1023 - input.getType());
+					return;
+				}
+				_moveTo(myNearestPh.getId());
 				return;
 			}
 			_explore();

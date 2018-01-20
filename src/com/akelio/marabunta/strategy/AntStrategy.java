@@ -1,15 +1,20 @@
 package com.akelio.marabunta.strategy;
 
 import com.akelio.marabunta.Const;
+import com.akelio.marabunta.Debug;
 import com.akelio.marabunta.input.ant.InputAnt;
 
 public abstract class AntStrategy {
+	
+	public static final boolean PRINT = false;
+	
 
 	public abstract void process(InputAnt input);
 	
 	
 	private void p(String line) {
 		System.out.println(line);
+		if(PRINT) Debug.d(line);
 	}
 	
 	
