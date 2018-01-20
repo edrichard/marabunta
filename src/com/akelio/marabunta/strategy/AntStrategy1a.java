@@ -92,10 +92,10 @@ public class AntStrategy1a extends AntStrategy {
 			setMemory(t,r);
 			_exploreD(3);
 			
-			if(t>400) {
-				suicide();
-				return;
-			}
+//			if(t>400) {
+//				suicide();
+//				return;
+//			}
 			return;
 		}
 
