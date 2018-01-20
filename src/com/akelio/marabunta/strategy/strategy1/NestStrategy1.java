@@ -18,20 +18,27 @@ public class NestStrategy1 extends NestStrategy {
 		
 		setMemory(t%256);
 		
-		AntCount antCount = input.getExistingAntType();
-		Debug.d("antCount="+antCount);
-		if(antCount!=null && antCount.getQuantity()>0) {
-			Debug.d("performing _antOut");
-			_antOut(antCount.getType(),5,0,0);
-			return;
+		if(t==1) {
+			_newAnt(1);return;
 		}
-
-		Debug.d("nest stock: "+input.getStock());
-		if(input.getStock()>50) {
-			Debug.d("_newAnt");
-			_newAnt(t%256);
-			return;
+		if(t==2) {
+			_antOut(1,0,0,0);return;
 		}
+		
+//		AntCount antCount = input.getExistingAntType();
+//		Debug.d("antCount="+antCount);
+//		if(antCount!=null && antCount.getQuantity()>0) {
+//			Debug.d("performing _antOut");
+//			_antOut(antCount.getType(),5,0,0);
+//			return;
+//		}
+//
+//		Debug.d("nest stock: "+input.getStock());
+//		if(input.getStock()>50) {
+//			Debug.d("_newAnt");
+//			_newAnt(t%256);
+//			return;
+//		}
 	}
 
 }
