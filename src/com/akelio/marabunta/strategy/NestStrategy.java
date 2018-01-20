@@ -1,4 +1,4 @@
-package com.akelio.marabunta.strategy.nest;
+package com.akelio.marabunta.strategy;
 
 import com.akelio.marabunta.input.nest.InputNest;
 

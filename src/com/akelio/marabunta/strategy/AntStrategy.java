@@ -1,4 +1,4 @@
-package com.akelio.marabunta.strategy.ant;
+package com.akelio.marabunta.strategy;
 
 import com.akelio.marabunta.input.ant.InputAnt;
 

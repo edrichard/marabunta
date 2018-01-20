@@ -1,6 +1,7 @@
 package com.akelio.marabunta;
 
 import java.util.Scanner;
+
 import com.akelio.marabunta.input.ant.Ant;
 import com.akelio.marabunta.input.ant.AntMemory;
 import com.akelio.marabunta.input.ant.Food;
@@ -11,24 +12,31 @@ import com.akelio.marabunta.input.nest.AntCount;
 import com.akelio.marabunta.input.nest.AntIn;
 import com.akelio.marabunta.input.nest.InputNest;
 import com.akelio.marabunta.input.nest.NestMemory;
+import com.akelio.marabunta.strategy.AntStrategy;
+import com.akelio.marabunta.strategy.NestStrategy;
 
-public class Main {
+public class Program {
+	
+	private AntStrategy antStrategy;
+	private NestStrategy nestStrategy;
 
-	public static void main(String[] args) {
-		new Main();
-	}
 
-	public Main() {
-		Scanner s = new Scanner(System.in);
-		String first = s.nextLine();
-
-		switch (first) {
-			case Const.BEGIN_ANT:
-				handleAnt(s);
-			case Const.BEGIN_NEST:
-				handleNest(s);
-			default:
-				throw new RuntimeException("Invalid begin line received: " + first);
+	public Program(AntStrategy antStrategy, NestStrategy nestStrategy) {
+		this.antStrategy = antStrategy;
+		this.nestStrategy = nestStrategy;
+		
+		while(true) {
+			Scanner s = new Scanner(System.in);
+			String first = s.nextLine();
+	
+			switch (first) {
+				case Const.BEGIN_ANT:
+					handleAnt(s);
+				case Const.BEGIN_NEST:
+					handleNest(s);
+				default:
+					throw new RuntimeException("Invalid begin line received: " + first);
+			}
 		}
 	}
 
@@ -55,6 +63,10 @@ public class Main {
 					inputNest.setStock(toInt(n[1]));
 					break;
 			}
+		}
+		
+		if(nestStrategy!=null) {
+			nestStrategy.process(inputNest);
 		}
 	}
 
@@ -97,7 +109,10 @@ public class Main {
 					inputAnt.setType(toInt(n[1]));
 					break;
 			}
-
+		}
+		
+		if(antStrategy!=null) {
+			antStrategy.process(inputAnt);
 		}
 	}
 
