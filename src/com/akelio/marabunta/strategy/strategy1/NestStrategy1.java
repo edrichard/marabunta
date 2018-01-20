@@ -8,25 +8,13 @@ import com.akelio.marabunta.strategy.NestStrategy;
 
 public class NestStrategy1 extends NestStrategy {
 	
-	public static boolean ONE = true;
 
 	public void process(InputNest input) {
 
 		Debug.d("NestStrategy1:process");
 		NestMemory mem = input.getMemory();
 		
-		int t = mem.getM0()+1;
-		Debug.d("nest-t="+t);
-		if(t<256) setMemory(t);
-		
-		if(ONE) {
-			if(t==1) {_newAnt(1);return;}
-			if(t==2) {_antOut(1,5,0,0);return;}
-			
-			return;
-		}
-		
-		
+		int t = mem.getM0();
 		
 		AntCount antCount = input.getExistingAntType();
 		Debug.d("antCount="+antCount);
@@ -36,10 +24,10 @@ public class NestStrategy1 extends NestStrategy {
 			return;
 		}
 
-		Debug.d("nest stock: "+input.getStock());
-		if(input.getStock()>50) {
+		if(t<20 && input.getStock()>50) {
 			Debug.d("_newAnt");
-			_newAnt(t%256);
+			setMemory(t+1);
+			_newAnt(t);
 			return;
 		}
 	}
