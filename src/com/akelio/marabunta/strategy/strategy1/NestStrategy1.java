@@ -16,7 +16,7 @@ public class NestStrategy1 extends NestStrategy {
 		int t = mem.getM0()+1;
 		Debug.d("t="+t);
 		
-		setMemory(t);
+		setMemory(t%256);
 		
 		AntCount antCount = input.getExistingAntType();
 		if(antCount!=null) {
@@ -25,7 +25,7 @@ public class NestStrategy1 extends NestStrategy {
 		}
 		
 		if(input.getStock()>50) {
-			_newAnt(t%255);
+			_newAnt(t%256);
 			return;
 		}
 	}

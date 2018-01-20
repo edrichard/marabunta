@@ -22,7 +22,7 @@ public class AntStrategy1 extends AntStrategy {
 		
 		int t = mem.getM0()+1;
 
-		setMemory(t,mem.getM1());
+		setMemory(t%256,mem.getM1());
 		
 		if(input.getStockLeft()==0) {
 			// rentrer au nid
