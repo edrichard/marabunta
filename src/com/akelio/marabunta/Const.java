@@ -39,4 +39,7 @@ public interface Const {
 	String AA_ATTACK = "ATTACK";
 	String AA_SUICIDE = "SUICIDE";
 	String AA_SET_MEMORY = "SET_MEMORY";
+	
+	int ANT_STOCK_MAX = 1000;
+	int ANT_STAMINA_MAX = 10000;
 }

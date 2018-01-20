@@ -21,16 +21,22 @@ public class AntStrategy1 extends AntStrategy {
 		 
 		 List<Food> foods = input.getFoods();
 		 
-		 if(foods.isEmpty())
+		 // aucune nouriture en vue : on explore
+		 if(foods.isEmpty()) {
 			 _explore();
-		 else {
-			 if(bestFood.isNear()) {
-				 _collect(bestFood.getId(), bestFood.getAmount());
-			 }
-			 else {
-				 _moveTo(bestFood.getId());
-			 }
+			 return;
+		 }
+		 
+		 // nouriture en vue : on se rapproche
+		 if(!bestFood.isNear()) {
+			 _moveTo(bestFood.getId());
+			 return;
+		 }
+		 
+		 int amount = Math.min(bestFood.getAmount(), input.getStockLeft());
+		 if(amount>0) {
+			_collect(bestFood.getId(), amount);
+		 	return;
 		 }
 	}
-
 }

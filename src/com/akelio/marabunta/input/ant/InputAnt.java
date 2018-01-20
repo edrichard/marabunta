@@ -3,6 +3,8 @@ package com.akelio.marabunta.input.ant;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.akelio.marabunta.Const;
+
 public class InputAnt {
 
 	private boolean			attacked = false;
@@ -50,6 +52,10 @@ public class InputAnt {
 
 	public int getStock() {
 		return stock;
+	}
+	
+	public int getStockLeft() {
+		return Const.ANT_STOCK_MAX-stock;
 	}
 
 	public void setStock(int stock) {
