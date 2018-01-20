@@ -11,11 +11,11 @@ public abstract class NestStrategy {
 		System.out.println(line);
 	}
 
-	protected void newAnt(int type) {
+	protected void _newAnt(int type) {
 		p(Const.NA_ANT_NEW + " " + type);
 	}
 
-	protected void antOut(int type, int food, int m0, int m1) {
+	protected void _antOut(int type, int food, int m0, int m1) {
 		p(Const.NA_ANT_OUT + " " + type + " " + food + " " + m0 + " " + m1);
 	}
 

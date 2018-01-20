@@ -13,52 +13,52 @@ public abstract class AntStrategy {
 	}
 	
 	
-	protected void explore() {
+	protected void _explore() {
 		p(Const.AA_EXPLORE);
 	}
 	
-	protected void putPheromone(int type) {
+	protected void _putPheromone(int type) {
 		p(Const.AA_PUT_PHEROMONE+" "+type);
 	}
 	
-	protected void changePheromone(int id, int type) {
+	protected void _changePheromone(int id, int type) {
 		p(Const.AA_CHANGE_PHEROMONE+" "+id+" "+type);
 	}
 
-	protected void rechargePheromone(int id) {
+	protected void _rechargePheromone(int id) {
 		p(Const.AA_RECHARGE_PHEROMONE+" "+id);
 	}
 
-	protected void doTrophallaxis(int id, int quantity) {
+	protected void _doTrophallaxis(int id, int quantity) {
 		p(Const.AA_DO_TROPHALLAXIS+" "+id+" "+quantity);
 	}
 
-	protected void eat(int quantity) {
+	protected void _eat(int quantity) {
 		p(Const.AA_EAT+" "+quantity);
 	}
 	
-	protected void moveTo(int id) {
+	protected void _moveTo(int id) {
 		p(Const.AA_MOVE_TO+" "+id);
 	}
 
-	protected void turn(int angle) {
+	protected void _turn(int angle) {
 		p(Const.AA_TURN+" "+angle);
 	}
 
-	protected void nest(int id) {
+	protected void _nest(int id) {
 		p(Const.AA_NEST+" "+id);
 	}
 
-	protected void attack(int id, int force) {
+	protected void _attack(int id, int force) {
 		p(Const.AA_ATTACK+" "+id+" "+force);
+	}
+	
+	protected void _collect(int id, int quantity) {
+		p(Const.AA_COLLECT+" "+id+" "+quantity);
 	}
 	
 	protected void suicide(int id, int forc) {
 		p(Const.AA_SUICIDE);
-	}
-	
-	protected void collect(int id, int quantity) {
-		p(Const.AA_COLLECT+" "+id+" "+quantity);
 	}
 	
 	protected void setMemory(int m0, int m1) {

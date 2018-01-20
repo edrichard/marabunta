@@ -123,5 +123,32 @@ public class InputAnt {
 	public void addNest(Nest n) {
 		nests.add(n);
 	}
+	
+	
+	
+	
+	public Food getBestFood() {
+		if(foods.isEmpty()) return null;
+		
+		Food best = foods.get(0);
+		int nb = foods.size();
+		
+		for(int i=1;i<nb;i++) {
+			Food food = foods.get(i);
+			if(food.isNear()) {
+				if(best.isFar()) best = food;
+				else {
+					if(food.getAmount()>best.getAmount()) best = food;
+				}
+			}
+			else {
+				if(best.isFar()) {
+					if(food.getAmount()>best.getAmount()) best = food;
+				}
+			}
+		}
+		
+		return best;
+	}
 
 }
