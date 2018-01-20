@@ -33,11 +33,9 @@ public class Program {
 			switch (first) {
 				case Const.BEGIN_ANT:
 					handleAnt(s);
-					s.close();
 					break;
 				case Const.BEGIN_NEST:
 					handleNest(s);
-					s.close();
 					break;
 				default:
 					throw new RuntimeException("Invalid begin line received: " + first);

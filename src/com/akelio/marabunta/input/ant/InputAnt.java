@@ -23,18 +23,6 @@ public class InputAnt {
 		ants = new ArrayList<>();
 	}
 
-	public InputAnt(boolean attacked, int type, int stamina, int stock, AntMemory memory, List<Pheromone> pheromones, List<Food> foods, List<Nest> nests, List<Ant> ants) {
-		super();
-		this.attacked = attacked;
-		this.type = type;
-		this.stamina = stamina;
-		this.stock = stock;
-		this.memory = memory;
-		this.pheromones = pheromones;
-		this.foods = foods;
-		this.nests = nests;
-		this.ants = ants;
-	}
 
 	public boolean isAttacked() {
 		return attacked;
