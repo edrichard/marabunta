@@ -7,6 +7,8 @@ import com.akelio.marabunta.input.nest.NestMemory;
 import com.akelio.marabunta.strategy.NestStrategy;
 
 public class NestStrategy1 extends NestStrategy {
+	
+	public static boolean ONE = true;
 
 	public void process(InputNest input) {
 
@@ -15,8 +17,12 @@ public class NestStrategy1 extends NestStrategy {
 		
 		int t = mem.getM0()+1;
 		Debug.d("t="+t);
-		
 		setMemory(t%256);
+		
+		if(ONE) {
+			if(t==1) {_newAnt(1);return;}
+			if(t==2) {_antOut(1,5,0,0);return;}
+		}
 		
 		AntCount antCount = input.getExistingAntType();
 		Debug.d("antCount="+antCount);
