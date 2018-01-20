@@ -12,8 +12,14 @@ public class NestStrategy1 extends NestStrategy {
 		
 		int t = mem.getM0()+1;
 		
-		if(t==1) _newAnt(1);
-		else if(t==2) _antOut(1,0,1,0);
+		
+		switch(t) {
+			case 1:_newAnt(1);
+			case 2:_antOut(1,0,1,0);
+
+			case 3:_newAnt(2);
+			case 4:_antOut(2,0,1,0);
+		}
 		
 		setMemory(t);
 	}
