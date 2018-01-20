@@ -144,5 +144,41 @@ public class InputAnt {
 		
 		return best;
 	}
+	
+	
+	public Nest getBestNest() {
+		if(nests.isEmpty()) return null;
+		
+		Nest best = null;
+		int dist = Integer.MAX_VALUE;
+		
+		for(Nest nest : nests) {
+			if(nest.isFriend()) continue;
+			
+			if(nest.getDist()<dist) {
+				best = nest;
+				dist = nest.getDist();
+			}
+		}
+		return best;
+	}
+	
+	
+	public Pheromone getOldestPheromone() {
+		if(pheromones.isEmpty()) return null;
+		
+		Pheromone best = null;
+		int bestPersistance = 100;
+		
+		for(Pheromone pheromone : pheromones) {
+			int persistance = pheromone.getPersistance();
+			
+			if(persistance<bestPersistance) {
+				bestPersistance = persistance;
+				best = pheromone;
+			}
+		}
+		return best;
+	}
 
 }

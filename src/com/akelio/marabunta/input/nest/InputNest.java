@@ -63,5 +63,10 @@ public class InputNest {
 	public void addAntIn(AntIn ai) {
 		antIns.add(ai);
 	}
+	
+	public AntCount getExistingAntType() {
+		if(antCounts.isEmpty()) return null;
+		return antCounts.get(0);
+	}
 
 }
