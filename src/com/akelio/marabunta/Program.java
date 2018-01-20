@@ -46,7 +46,9 @@ public class Program {
 	private void handleNest(Scanner s) {
 		InputNest inputNest = new InputNest();
 		String info = s.nextLine();
+		
 		while (!info.equals(Const.END)) {
+			inputNest = new InputNest();
 			String[] n = info.split(" ");
 
 			switch (n[0]) {
@@ -71,16 +73,18 @@ public class Program {
 			info = s.nextLine();
 		}
 		
-		if(nestStrategy!=null) {
+		if(inputNest.getMemory()!=null) {
 			nestStrategy.process(inputNest);
-			nestStrategy.end();
 		}
+		nestStrategy.end();
 	}
 	
 
+	
 	private void handleAnt(Scanner s) {
 		InputAnt inputAnt = new InputAnt();
 		String info = s.nextLine();
+		
 		while (!info.equals(Const.END)) {
 			String[] n = info.split(" ");
 
@@ -116,10 +120,10 @@ public class Program {
 			info = s.nextLine();
 		}
 		
-		if(antStrategy!=null) {
+		if(inputAnt.getMemory()!=null) {
 			antStrategy.process(inputAnt);
-			antStrategy.end();
 		}
+		antStrategy.end();
 	}
 
 	private int toInt(String s) {
