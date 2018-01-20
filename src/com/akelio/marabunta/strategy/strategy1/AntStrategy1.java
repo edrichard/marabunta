@@ -44,7 +44,7 @@ public class AntStrategy1 extends AntStrategy {
 		
 		// rechercher de la nourriture
 		
-		// on place une phéromone tous les 3 tours
+		// on place une pheromone tous les 3 tours
 		if(t%3==0) {
 			_putPheromone(input.getType());
 			return;
