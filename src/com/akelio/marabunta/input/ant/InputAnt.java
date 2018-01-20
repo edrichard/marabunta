@@ -71,6 +71,13 @@ public class InputAnt {
 			list.add(pheromone);
 		return list;
 	}
+	
+	public List<Pheromone> getPathPheromones() {
+		List<Pheromone> list = new ArrayList<>();
+		for(Pheromone pheromone : pheromones)  if(pheromone.getType()>511)
+			list.add(pheromone);
+		return list;
+	}
 
 	public void setPheromones(List<Pheromone> pheromones) {
 		this.pheromones = pheromones;

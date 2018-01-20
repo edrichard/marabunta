@@ -62,7 +62,7 @@ public abstract class AntStrategy {
 		p(Const.AA_COLLECT+" "+id+" "+quantity);
 	}
 	
-	protected void suicide(int id, int forc) {
+	protected void suicide() {
 		p(Const.AA_SUICIDE);
 	}
 	

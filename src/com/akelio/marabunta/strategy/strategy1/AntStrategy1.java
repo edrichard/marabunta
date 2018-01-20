@@ -71,6 +71,11 @@ public class AntStrategy1 extends AntStrategy {
 		if(foods.isEmpty()) {
 			// aucune nouriture en vue : on explore
 			_explore();
+			
+			if(t>40) {
+				suicide();
+				return;
+			}
 			return;
 		}
 
