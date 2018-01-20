@@ -24,8 +24,10 @@ public class AntStrategy1 extends AntStrategy {
 
 		setMemory(t%256,mem.getM1());
 		
-		if(input.getStockLeft()==0) {
+		if(input.getStock()>100) {
 			// rentrer au nid
+			Debug.d("Je rentre au nid");
+			
 			if(bestNest!=null) {
 				if(bestNest.isNear()) {
 					_nest(bestNest.getId());
