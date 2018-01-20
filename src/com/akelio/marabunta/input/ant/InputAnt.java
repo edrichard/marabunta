@@ -21,6 +21,7 @@ public class InputAnt {
 		foods = new ArrayList<>();
 		nests = new ArrayList<>();
 		ants = new ArrayList<>();
+		attacked = false;
 	}
 
 	public InputAnt(boolean attacked, int type, int stamina, int stock, AntMemory memory, List<Pheromone> pheromones, List<Food> foods, List<Nest> nests, List<Ant> ants) {

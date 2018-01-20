@@ -61,4 +61,11 @@ public class Pheromone {
 		this.persistance = persistance;
 	}
 
+	public boolean isFar() {
+		return zone.equals("FAR");
+	}
+
+	public boolean isNear() {
+		return zone.equals("NEAR");
+	}
 }

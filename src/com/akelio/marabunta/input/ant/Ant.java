@@ -61,4 +61,20 @@ public class Ant {
 		this.stamina = stamina;
 	}
 
+	public boolean isFar() {
+		return zone.equals("FAR");
+	}
+
+	public boolean isNear() {
+		return zone.equals("NEAR");
+	}
+
+	public boolean isFriend() {
+		return friend.equals("FRIEND");
+	}
+
+	public boolean isEnnemy() {
+		return friend.equals("ENNEMY");
+	}
+
 }

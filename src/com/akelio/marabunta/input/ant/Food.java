@@ -51,4 +51,12 @@ public class Food {
 		this.amount = amount;
 	}
 
+	public boolean isFar() {
+		return zone.equals("FAR");
+	}
+
+	public boolean isNear() {
+		return zone.equals("NEAR");
+	}
+
 }

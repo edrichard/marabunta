@@ -1,10 +1,11 @@
 package com.akelio.marabunta.input.nest;
 
+import com.akelio.marabunta.input.ant.AntMemory;
+
 public class AntIn {
 
-	private int	type;
-	private int	m0;
-	private int	m1;
+	private int			type;
+	private AntMemory	memory;
 
 	public AntIn() {
 		super();
@@ -13,8 +14,13 @@ public class AntIn {
 	public AntIn(int type, int m0, int m1) {
 		super();
 		this.type = type;
-		this.m0 = m0;
-		this.m1 = m1;
+		this.memory = new AntMemory(m0, m1);
+	}
+
+	public AntIn(int type, AntMemory memory) {
+		super();
+		this.type = type;
+		this.memory = memory;
 	}
 
 	public int getType() {
@@ -25,20 +31,12 @@ public class AntIn {
 		this.type = type;
 	}
 
-	public int getM0() {
-		return m0;
+	public AntMemory getMemory() {
+		return memory;
 	}
 
-	public void setM0(int m0) {
-		this.m0 = m0;
-	}
-
-	public int getM1() {
-		return m1;
-	}
-
-	public void setM1(int m1) {
-		this.m1 = m1;
+	public void setMemory(AntMemory memory) {
+		this.memory = memory;
 	}
 
 }
