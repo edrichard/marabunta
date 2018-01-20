@@ -7,10 +7,12 @@ import com.akelio.marabunta.strategy.NestStrategy;
 public class NestStrategy1 extends NestStrategy {
 
 	public void process(InputNest input) {
-		
+
+		System.err.println("NestStrategy1:process");
 		NestMemory mem = input.getMemory();
 		
 		int t = mem.getM0()+1;
+		System.err.println("t="+t);
 		
 		setMemory(t);
 		

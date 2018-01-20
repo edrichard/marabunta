@@ -10,6 +10,7 @@ import com.akelio.marabunta.strategy.AntStrategy;
 public class AntStrategy1 extends AntStrategy {
 
 	public void process(InputAnt input) {
+		System.err.println("AntStrategy1:process");
 		
 		 AntMemory mem = input.getMemory();
 		 Food bestFood = input.getBestFood();
