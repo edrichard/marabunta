@@ -27,9 +27,9 @@ public class AntStrategy2 extends AntStrategy {
 		int r = mem.getM1();
 		
 		t++;
-		Debug.d("ant-t="+t);
-		if(t<256) t=255;
+		if(t==256) t=0;
 		
+		Debug.d("ant-t="+t);
 		
 		
 		
