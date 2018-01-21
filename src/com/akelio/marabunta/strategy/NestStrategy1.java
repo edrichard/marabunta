@@ -1,6 +1,5 @@
 package com.akelio.marabunta.strategy;
 
-import com.akelio.marabunta.Debug;
 import com.akelio.marabunta.input.nest.AntCount;
 import com.akelio.marabunta.input.nest.InputNest;
 import com.akelio.marabunta.input.nest.NestMemory;
@@ -13,7 +12,6 @@ public class NestStrategy1 extends NestStrategy {
 
 	public void process(InputNest input) {
 
-		Debug.d("NestStrategy1:process");
 		NestMemory mem = input.getMemory();
 		int t = mem.getM0();
 		int c = mem.getM1();

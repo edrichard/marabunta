@@ -80,6 +80,7 @@ public class AntStrategy3 extends AntStrategy {
 			if(amount>0) {
 				// il y a de la nourriture a recolter : on collecte
 				r = (int) (t/3);
+				Debug.d("r="+r);
 				setMemory(t,r);
 				_collect(bestFood.getId(), amount);
 				return;
