@@ -31,19 +31,19 @@ public class NestStrategy1 extends NestStrategy {
 		if(stock<STOCK_MIN) return;
 		
 		if(t1<ANT_MAXNB) {
-			_newAnt(t1);
+			_newAnt(1);
 			return;
 		}
 		
-		if(stock>=STOCK_STEP1 && stock<STOCK_STEP2) {
-			if(t1%15==0) _newAnt(t1);
-			return;
-		}
-		
-		if(stock>=STOCK_STEP2) {
-			if(t1%30==0) _newAnt(t1);
-			return;
-		}
+//		if(stock>=STOCK_STEP1 && stock<STOCK_STEP2) {
+//			if(t1%15==0) _newAnt(1);
+//			return;
+//		}
+//		
+//		if(stock>=STOCK_STEP2) {
+//			if(t1%30==0) _newAnt(1);
+//			return;
+//		}
 	}
 
 }
