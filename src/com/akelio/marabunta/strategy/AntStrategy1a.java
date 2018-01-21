@@ -108,7 +108,7 @@ public class AntStrategy1a extends AntStrategy {
 		}
 		Debug.d("DEBUG4");
 		
-		if(!pathPheromones.isEmpty()) {
+		if(pathPheromones!=null && !pathPheromones.isEmpty()) {
 			if(pathPheromones.size()==1) {
 				setMemory(t,r);
 				_moveTo(pathPheromones.get(0).getId());
