@@ -10,7 +10,6 @@ import com.akelio.marabunta.input.ant.Pheromone;
 public class AntStrategy3 extends AntStrategy {
 	
 	public static int STEP = 5;
-	public static int TIMEOUT = 400;
 
 	public void process(InputAnt input) {
 
@@ -22,6 +21,9 @@ public class AntStrategy3 extends AntStrategy {
 
 		int t = mem.getM0();
 		int r = mem.getM1();
+
+		t++;
+		if(t==256) t=0;
 		
 		if(input.getStock()>100) {
 			
@@ -95,13 +97,6 @@ public class AntStrategy3 extends AntStrategy {
 			_moveTo(highestFlaggedPheromone.getId());
 			return;
 		}
-		
-//		if(t>TIMEOUT) {
-//			suicide();
-//		}
-
-		t++;
-		if(t==256) t=0;
 		
 		// on place une pheromone tous les X tours
 		if(t%STEP==0) {
