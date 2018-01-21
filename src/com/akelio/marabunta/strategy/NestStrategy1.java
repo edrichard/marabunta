@@ -7,7 +7,7 @@ import com.akelio.marabunta.input.nest.NestMemory;
 
 public class NestStrategy1 extends NestStrategy {
 	
-	public static final int ANT_MAXNB = 40;
+	public static final int ANT_MAXNB = 100;
 	public static final int STOCK_MIN = 50;
 	
 
