@@ -16,7 +16,6 @@ public class AntStrategy3 extends AntStrategy {
 		Nest bestNest = input.getBestNest();
 		
 		Pheromone pathHighestPh = getHighestPathPheromone(input);
-		Pheromone pathLowestPh = getLowestPathPheromone(input);
 
 		int t = mem.getM0();
 		int r = mem.getM1();
@@ -38,13 +37,15 @@ public class AntStrategy3 extends AntStrategy {
 				return;
 			}
 			
+			Pheromone unflagged = getUnflaggedPheromone(input);
+			if(unflagged!=null) {
+				setMemory(t,r);
+				_changePheromone(unflagged.getId(), unflagged.getType()+100);
+				return;
+			}
+			
 			Pheromone targetRetour = getLowestPheromone(input);
 			if(targetRetour!=null) {
-				if(targetRetour.isNear() && targetRetour.getType()<100) {
-					setMemory(t,r);
-					_changePheromone(targetRetour.getId(), targetRetour.getType()+100);
-					return;
-				}
 				setMemory(t,r);
 				_moveTo(targetRetour.getId());
 				return;
@@ -68,7 +69,7 @@ public class AntStrategy3 extends AntStrategy {
 		
 		if(bestFood!=null && bestFood.isNear()) {
 			// nouriture a portee
-			int amount = Math.min(bestFood.getAmount(), input.getStockLeft());
+			int amount = Math.min(bestFood.getAmount(), input.getStockLeft())-1;
 			if(amount>0) {
 				// il y a de la nourriture a recolter : on collecte
 				r = (int) (t/3);
@@ -115,20 +116,6 @@ public class AntStrategy3 extends AntStrategy {
 		return best;
 	}
 	
-	private Pheromone getLowestPathPheromone(InputAnt input) {
-		if (input.getPheromones().isEmpty()) return null;
-
-		Pheromone best = null;
-		int id = Integer.MAX_VALUE;
-
-		for (Pheromone pheromone : input.getPheromones()) {
-			if (pheromone.getType()>=100 && pheromone.getType()<id) {
-				best = pheromone;
-				id = pheromone.getType();
-			}
-		}
-		return best;
-	}
 	
 	
 	
@@ -148,11 +135,16 @@ public class AntStrategy3 extends AntStrategy {
 	}
 	
 	
-	private Pheromone getPheromoneById(InputAnt input, int id) {
+	
+	private Pheromone getUnflaggedPheromone(InputAnt input) {
 		if (input.getPheromones().isEmpty()) return null;
+
 		for (Pheromone pheromone : input.getPheromones()) {
-			if (pheromone.getType()==id) return pheromone;
+			if (pheromone.getType()<100 && pheromone.isNear()) return pheromone;
 		}
 		return null;
 	}
+	
+	
+	
 }
