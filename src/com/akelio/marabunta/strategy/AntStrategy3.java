@@ -20,10 +20,6 @@ public class AntStrategy3 extends AntStrategy {
 		Pheromone highestFlaggedPheromone = getHighestFlaggedPheromone(input);
 
 		int t = mem.getM0();
-		int r = mem.getM1();
-
-		t++;
-		if(t==256) t=0;
 		
 		if(input.getStock()>100) {
 			
@@ -35,7 +31,7 @@ public class AntStrategy3 extends AntStrategy {
 					_nest(bestNest.getId());
 					return;
 				}
-				setMemory(t,r);
+				setMemory(t,0);
 				_moveTo(bestNest.getId());
 				return;
 			}
@@ -43,19 +39,19 @@ public class AntStrategy3 extends AntStrategy {
 			Pheromone unflagged = getUnflaggedPheromone(input);
 			if(unflagged!=null) {
 				if(unflagged.isWeak()) {
-					setMemory(t,r);
+					setMemory(t,0);
 					_rechargePheromone(unflagged.getId());
 					return;
 				}
 				
-				setMemory(t,r);
+				setMemory(t,0);
 				_changePheromone(unflagged.getId(), unflagged.getType()+100);
 				return;
 			}
 			
 			Pheromone targetRetour = getLowestPheromone(input);
 			if(targetRetour!=null) {
-				setMemory(t,r);
+				setMemory(t,0);
 				_moveTo(targetRetour.getId());
 				return;
 			}
@@ -65,14 +61,23 @@ public class AntStrategy3 extends AntStrategy {
 		}
 		
 		// rechercher de la nourriture
+
+		t++;
+		if(t==256) t=0;
 		
+		// on place une pheromone tous les X tours
+		if(t%STEP==0) {
+			setMemory(t,0);
+			_putPheromone((int) (t/STEP));
+			return;
+		}
 		
 		if(bestFood!=null && bestFood.isNear()) {
 			// nouriture a portee
 			int amount = Math.min(bestFood.getAmount(), input.getStockLeft())-1;
 			if(amount>0) {
 				// il y a de la nourriture a recolter : on collecte
-				setMemory(t,r);
+				setMemory(t,0);
 				_collect(bestFood.getId(), amount);
 				return;
 			}
@@ -80,7 +85,7 @@ public class AntStrategy3 extends AntStrategy {
 		
 		if(bestFood!=null && bestFood.isFar()) {
 			// nouriture en vue : on se rapproche
-			setMemory(t,r);
+			setMemory(t,0);
 			_moveTo(bestFood.getId());
 			return;
 		}
@@ -89,23 +94,16 @@ public class AntStrategy3 extends AntStrategy {
 			// path best pheromonone : on suit la piste
 			
 			if(highestFlaggedPheromone.isNear() && highestFlaggedPheromone.isWeak()) {
-				setMemory(t,r);
+				setMemory(t,0);
 				_rechargePheromone(highestFlaggedPheromone.getId());
 				return;
 			}
-			setMemory(t,r);
+			setMemory(t,0);
 			_moveTo(highestFlaggedPheromone.getId());
 			return;
 		}
 		
-		// on place une pheromone tous les X tours
-		if(t%STEP==0) {
-			setMemory(t,r);
-			_putPheromone((int) (t/STEP));
-			return;
-		}
-		
-		setMemory(t,r);
+		setMemory(t,0);
 		_explore();
 	}
 	
