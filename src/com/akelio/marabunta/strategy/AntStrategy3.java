@@ -1,7 +1,5 @@
 package com.akelio.marabunta.strategy;
 
-import java.util.List;
-
 import com.akelio.marabunta.Debug;
 import com.akelio.marabunta.input.ant.AntMemory;
 import com.akelio.marabunta.input.ant.Food;
