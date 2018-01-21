@@ -8,14 +8,17 @@ public class NestStrategy1 extends NestStrategy {
 	
 	public static final int ANT_MAXNB = 40;
 	public static final int STOCK_MIN = 50;
+	public static final int STOCK_STEP1 = 5000;
+	public static final int STOCK_STEP2 = 10000;
 	
 
 	public void process(InputNest input) {
 
 		NestMemory mem = input.getMemory();
-		int t = mem.getM0();
-		int c = mem.getM1();
+		int stock = input.getStock();
 		
+		int t = mem.getM0();
+		setMemory(t+1);
 		
 		AntCount antCount = input.getExistingAntType();
 		if(antCount!=null && antCount.getQuantity()>0) {
@@ -23,9 +26,20 @@ public class NestStrategy1 extends NestStrategy {
 			return;
 		}
 		
-		if(t<ANT_MAXNB && input.getStock()>STOCK_MIN) {
-			setMemory(t+1,c);
+		if(stock<STOCK_MIN) return;
+		
+		if(t<ANT_MAXNB) {
 			_newAnt(t);
+			return;
+		}
+		
+		if(stock>=STOCK_STEP1 && stock<STOCK_STEP2) {
+			if(t%3==0) _newAnt(t);
+			return;
+		}
+		
+		if(stock>=STOCK_STEP2) {
+			if(t%6==0) _newAnt(t);
 			return;
 		}
 	}
