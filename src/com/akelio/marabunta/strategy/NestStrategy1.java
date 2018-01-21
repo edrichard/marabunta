@@ -7,8 +7,7 @@ import com.akelio.marabunta.input.nest.NestMemory;
 
 public class NestStrategy1 extends NestStrategy {
 	
-	public static final int ANT_MAXNB = 20;
-	public static final int ANT_MAXNB2 = 60;
+	public static final int ANT_MAXNB = 40;
 	public static final int STOCK_MIN = 50;
 	
 
@@ -19,12 +18,6 @@ public class NestStrategy1 extends NestStrategy {
 		int t = mem.getM0();
 		int c = mem.getM1();
 		
-		if(!input.getAntIns().isEmpty()) {
-			c++;
-			setMemory(t+1,c);
-		}
-		
-		int maxCreation = c==0 ? ANT_MAXNB : ANT_MAXNB2;
 		
 		AntCount antCount = input.getExistingAntType();
 		if(antCount!=null && antCount.getQuantity()>0) {
@@ -33,7 +26,7 @@ public class NestStrategy1 extends NestStrategy {
 			return;
 		}
 		
-		if(t<maxCreation && input.getStock()>STOCK_MIN) {
+		if(input.getStock()>STOCK_MIN) {
 			Debug.d("_newAnt");
 			setMemory(t+1,c);
 			_newAnt(t);
