@@ -77,6 +77,7 @@ public class AntStrategy1a extends AntStrategy {
 		}
 		
 		// rechercher de la nourriture
+		Debug.d("DEBUG1");
 		
 		// on place une pheromone tous les 3 tours
 		if(t%3==0) {
@@ -84,6 +85,7 @@ public class AntStrategy1a extends AntStrategy {
 			_putPheromone(input.getType()*10);
 			return;
 		}	
+		Debug.d("DEBUG2");
 				
 		if(bestFood!=null && bestFood.isNear()) {
 			// nouriture a portee
@@ -96,6 +98,7 @@ public class AntStrategy1a extends AntStrategy {
 				return;
 			}
 		}
+		Debug.d("DEBUG3");
 		
 		if(bestFood!=null && bestFood.isFar()) {
 			// nouriture en vue : on se rapproche
@@ -103,7 +106,7 @@ public class AntStrategy1a extends AntStrategy {
 			_moveTo(bestFood.getId());
 			return;
 		}
-		
+		Debug.d("DEBUG4");
 		
 		if(!pathPheromones.isEmpty()) {
 			if(pathPheromones.size()==1) {
