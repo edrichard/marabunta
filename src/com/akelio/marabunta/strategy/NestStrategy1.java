@@ -21,13 +21,11 @@ public class NestStrategy1 extends NestStrategy {
 		
 		AntCount antCount = input.getExistingAntType();
 		if(antCount!=null && antCount.getQuantity()>0) {
-			Debug.d("performing _antOut");
 			_antOut(antCount.getType(),0,0,0);
 			return;
 		}
 		
-		if(input.getStock()>STOCK_MIN) {
-			Debug.d("_newAnt");
+		if(t<ANT_MAXNB && input.getStock()>STOCK_MIN) {
 			setMemory(t+1,c);
 			_newAnt(t);
 			return;
