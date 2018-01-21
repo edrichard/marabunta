@@ -36,7 +36,7 @@ public class InputNest {
 		return antCounts;
 	}
 	
-	public int getTotalCount() {
+	public int getTotalAntCounts() {
 		int total = 0;
 		for(AntCount count : antCounts) {
 			total+= count.getQuantity();
@@ -51,6 +51,7 @@ public class InputNest {
 	public List<AntIn> getAntIns() {
 		return antIns;
 	}
+	
 
 	public void setAntIns(List<AntIn> antIns) {
 		this.antIns = antIns;
