@@ -8,6 +8,8 @@ import com.akelio.marabunta.input.ant.Nest;
 import com.akelio.marabunta.input.ant.Pheromone;
 
 public class AntStrategy3 extends AntStrategy {
+	
+	public static int STEP = 5;
 
 	public void process(InputAnt input) {
 
@@ -39,6 +41,12 @@ public class AntStrategy3 extends AntStrategy {
 			
 			Pheromone unflagged = getUnflaggedPheromone(input);
 			if(unflagged!=null) {
+				if(unflagged.getPersistance()<25) {
+					setMemory(t,r);
+					_rechargePheromone(unflagged.getId());
+					return;
+				}
+				
 				setMemory(t,r);
 				_changePheromone(unflagged.getId(), unflagged.getType()+100);
 				return;
@@ -61,9 +69,9 @@ public class AntStrategy3 extends AntStrategy {
 		if(t==256) t=0;
 		
 		// on place une pheromone tous les 3 tours
-		if(t%3==0) {
+		if(t%STEP==0) {
 			setMemory(t,r);
-			_putPheromone((int) (t/3));
+			_putPheromone((int) (t/STEP));
 			return;
 		}
 		
@@ -72,7 +80,7 @@ public class AntStrategy3 extends AntStrategy {
 			int amount = Math.min(bestFood.getAmount(), input.getStockLeft())-1;
 			if(amount>0) {
 				// il y a de la nourriture a recolter : on collecte
-				r = (int) (t/3);
+				r = (int) (t/STEP);
 				Debug.d("r="+r);
 				setMemory(t,r);
 				_collect(bestFood.getId(), amount);
