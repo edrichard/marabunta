@@ -20,7 +20,9 @@ public class NestStrategy1 extends NestStrategy {
 		
 		int t1 = mem.getM0();
 		
+		if(t1==255) t1=0;
 		setMemory(t1+1);
+		
 		
 		
 		AntCount antCount = input.getExistingAntType();
