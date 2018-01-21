@@ -64,15 +64,6 @@ public class AntStrategy3 extends AntStrategy {
 		
 		// rechercher de la nourriture
 		
-		t++;
-		if(t==256) t=0;
-		
-		// on place une pheromone tous les 3 tours
-		if(t%STEP==0) {
-			setMemory(t,r);
-			_putPheromone((int) (t/STEP));
-			return;
-		}
 		
 		if(bestFood!=null && bestFood.isNear()) {
 			// nouriture a portee
@@ -105,8 +96,18 @@ public class AntStrategy3 extends AntStrategy {
 			return;
 		}
 		
-		if(t>TIMEOUT) {
-			suicide();
+//		if(t>TIMEOUT) {
+//			suicide();
+//		}
+
+		t++;
+		if(t==256) t=0;
+		
+		// on place une pheromone tous les X tours
+		if(t%STEP==0) {
+			setMemory(t,r);
+			_putPheromone((int) (t/STEP));
+			return;
 		}
 		
 		setMemory(t,r);

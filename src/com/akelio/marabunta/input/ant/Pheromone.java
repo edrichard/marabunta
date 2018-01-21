@@ -58,7 +58,7 @@ public class Pheromone {
 	}
 	
 	public boolean isWeak() {
-		return persistance<25;
+		return persistance<50;
 	}
 
 	public void setPersistance(int persistance) {
