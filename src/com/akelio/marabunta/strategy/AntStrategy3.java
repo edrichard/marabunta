@@ -9,7 +9,7 @@ import com.akelio.marabunta.input.ant.Pheromone;
 
 public class AntStrategy3 extends AntStrategy {
 	
-	public static int STEP = 10;
+	public static int STEP = 5;
 	public static int TIMEOUT = 400;
 
 	public void process(InputAnt input) {
