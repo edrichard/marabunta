@@ -17,6 +17,12 @@ public class AntStrategy3 extends AntStrategy {
 		Food bestFood = input.getBestFood();
 		Nest bestNest = input.getBestNest();
 		
+		if(input.getStamina()<1000) {
+			int amount = Math.min(input.getStock(), 900);
+			_eat(amount);
+			return;
+		}
+		
 		Pheromone highestFlaggedPheromone = getHighestFlaggedPheromone(input);
 
 		int t = mem.getM0();
