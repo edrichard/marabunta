@@ -12,7 +12,7 @@ public class AntStrategy3 extends AntStrategy {
 	public static int STEP = 5;
 
 	public void process(InputAnt input) {
-		if(input.getType()==1) return;
+		if(input.getType()==2) return;
 
 		AntMemory mem = input.getMemory();
 		Food bestFood = input.getBestFood();
