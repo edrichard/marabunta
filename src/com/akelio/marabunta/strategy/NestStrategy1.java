@@ -1,5 +1,6 @@
 package com.akelio.marabunta.strategy;
 
+import com.akelio.marabunta.Debug;
 import com.akelio.marabunta.input.nest.AntCount;
 import com.akelio.marabunta.input.nest.InputNest;
 import com.akelio.marabunta.input.nest.NestMemory;
@@ -31,6 +32,7 @@ public class NestStrategy1 extends NestStrategy {
 		if(stock<STOCK_MIN) return;
 		
 		if(t1<ANT_MAXNB) {
+			if(t1==1) Debug.d("_newAnt de 1");
 			_newAnt(t1);
 			return;
 		}
