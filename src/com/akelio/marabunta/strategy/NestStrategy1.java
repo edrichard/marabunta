@@ -6,10 +6,10 @@ import com.akelio.marabunta.input.nest.NestMemory;
 
 public class NestStrategy1 extends NestStrategy {
 	
-	public static final int ANT_MAXNB = 40;
+	public static final int ANT_MAXNB = 30;
 	public static final int STOCK_MIN = 50;
-	public static final int STOCK_STEP1 = 5000;
-	public static final int STOCK_STEP2 = 10000;
+	public static final int STOCK_STEP1 = 4000;
+	public static final int STOCK_STEP2 = 8000;
 	
 
 	public void process(InputNest input) {
@@ -34,12 +34,12 @@ public class NestStrategy1 extends NestStrategy {
 		}
 		
 		if(stock>=STOCK_STEP1 && stock<STOCK_STEP2) {
-			if(t%3==0) _newAnt(t);
+			if(t%15==0) _newAnt(t);
 			return;
 		}
 		
 		if(stock>=STOCK_STEP2) {
-			if(t%6==0) _newAnt(t);
+			if(t%30==0) _newAnt(t);
 			return;
 		}
 	}
