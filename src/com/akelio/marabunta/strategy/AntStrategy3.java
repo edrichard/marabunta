@@ -10,6 +10,7 @@ import com.akelio.marabunta.input.ant.Pheromone;
 public class AntStrategy3 extends AntStrategy {
 	
 	public static int STEP = 6;
+	public static int TIMEOUT = 400;
 
 	public void process(InputAnt input) {
 
@@ -21,8 +22,6 @@ public class AntStrategy3 extends AntStrategy {
 
 		int t = mem.getM0();
 		int r = mem.getM1();
-		
-		Debug.d("ant-t="+t);
 		
 		if(input.getStock()>100) {
 			
@@ -80,8 +79,6 @@ public class AntStrategy3 extends AntStrategy {
 			int amount = Math.min(bestFood.getAmount(), input.getStockLeft())-1;
 			if(amount>0) {
 				// il y a de la nourriture a recolter : on collecte
-				r = (int) (t/STEP);
-				Debug.d("r="+r);
 				setMemory(t,r);
 				_collect(bestFood.getId(), amount);
 				return;
@@ -106,6 +103,10 @@ public class AntStrategy3 extends AntStrategy {
 			setMemory(t,r);
 			_moveTo(highestFlaggedPheromone.getId());
 			return;
+		}
+		
+		if(t>TIMEOUT) {
+			suicide();
 		}
 		
 		setMemory(t,r);
