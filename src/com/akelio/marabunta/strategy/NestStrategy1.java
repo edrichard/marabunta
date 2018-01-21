@@ -6,9 +6,9 @@ import com.akelio.marabunta.input.nest.NestMemory;
 
 public class NestStrategy1 extends NestStrategy {
 	
-	public static final int ANT_MAXNB = 20;
+	public static final int ANT_MAXNB = 40;
 	public static final int STOCK_MIN = 50;
-	public static final int STOCK_STEP1 = 2000;
+	public static final int STOCK_STEP1 = 4000;
 	public static final int STOCK_STEP2 = 10000;
 	
 
@@ -20,8 +20,6 @@ public class NestStrategy1 extends NestStrategy {
 		int t1 = mem.getM0();
 		
 		setMemory(t1+1);
-		
-		boolean entered = !input.getAntIns().isEmpty();
 		
 		
 		AntCount antCount = input.getExistingAntType();

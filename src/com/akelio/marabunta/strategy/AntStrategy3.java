@@ -18,7 +18,8 @@ public class AntStrategy3 extends AntStrategy {
 		Nest bestNest = input.getBestNest();
 		
 		if(input.getStamina()<1000) {
-			int amount = Math.min(input.getStock(), 900);
+			int needed = (int) (input.getMissingStamina()/10);
+			int amount = Math.min(input.getStock(), needed);
 			_eat(amount);
 			return;
 		}
@@ -34,6 +35,12 @@ public class AntStrategy3 extends AntStrategy {
 			
 			if(bestNest!=null) {
 				if(bestNest.isNear()) {
+					if(input.getStamina()<5000) {
+						int needed = (int) (input.getMissingStamina()/10);
+						int amount = Math.min(input.getStock(), needed);
+						_eat(amount);
+						return;
+					}
 					_nest(bestNest.getId());
 					return;
 				}

@@ -44,6 +44,10 @@ public class InputAnt {
 	public int getStamina() {
 		return stamina;
 	}
+	
+	public int getMissingStamina() {
+		return Const.ANT_STAMINA_MAX-stamina;
+	}
 
 	public void setStamina(int stamina) {
 		this.stamina = stamina;
