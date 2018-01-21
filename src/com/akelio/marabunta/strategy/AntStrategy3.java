@@ -30,7 +30,6 @@ public class AntStrategy3 extends AntStrategy {
 			
 			if(bestNest!=null) {
 				if(bestNest.isNear()) {
-					
 					_nest(bestNest.getId());
 					return;
 				}
@@ -39,17 +38,11 @@ public class AntStrategy3 extends AntStrategy {
 				return;
 			}
 			
-			if(pathLowestPh!=null) {
-				setMemory(t,r);
-				_moveTo(pathLowestPh.getId());
-				return;
-			}
-			
-			Pheromone targetRetour = getPheromoneById(input,r);
+			Pheromone targetRetour = getLowestPheromone(input);
 			if(targetRetour!=null) {
-				if(targetRetour.isNear()) {
-					setMemory(t,r-1);
-					_changePheromone(targetRetour.getId(), r+100);
+				if(targetRetour.isNear() && targetRetour.getType()<100) {
+					setMemory(t,r);
+					_changePheromone(targetRetour.getId(), targetRetour.getType()+100);
 					return;
 				}
 				setMemory(t,r);
@@ -57,7 +50,6 @@ public class AntStrategy3 extends AntStrategy {
 				return;
 			}
 			
-			setMemory(t,r);
 			suicide();
 			return;
 		}
@@ -133,6 +125,23 @@ public class AntStrategy3 extends AntStrategy {
 			if (pheromone.getType()>=100 && pheromone.getType()<id) {
 				best = pheromone;
 				id = pheromone.getType();
+			}
+		}
+		return best;
+	}
+	
+	
+	
+	private Pheromone getLowestPheromone(InputAnt input) {
+		if (input.getPheromones().isEmpty()) return null;
+
+		Pheromone best = null;
+		int id = Integer.MAX_VALUE;
+
+		for (Pheromone pheromone : input.getPheromones()) {
+			if (pheromone.getType()%100<id) {
+				best = pheromone;
+				id = pheromone.getType()%100;
 			}
 		}
 		return best;
