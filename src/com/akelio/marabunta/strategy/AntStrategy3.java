@@ -97,9 +97,11 @@ public class AntStrategy3 extends AntStrategy {
 		
 		if(highestFlaggedPheromone!=null) {
 			// path best pheromonone : on suit la piste
+			
 			if(highestFlaggedPheromone.isNear() && highestFlaggedPheromone.isWeak()) {
 				setMemory(t,r);
 				_rechargePheromone(highestFlaggedPheromone.getId());
+				return;
 			}
 			setMemory(t,r);
 			_moveTo(highestFlaggedPheromone.getId());
