@@ -17,7 +17,7 @@ public class AntStrategy3 extends AntStrategy {
 		Food bestFood = input.getBestFood();
 		Nest bestNest = input.getBestNest();
 		
-		Pheromone pathHighestPh = getHighestPathPheromone(input);
+		Pheromone highestFlaggedPheromone = getHighestFlaggedPheromone(input);
 
 		int t = mem.getM0();
 		int r = mem.getM1();
@@ -41,7 +41,7 @@ public class AntStrategy3 extends AntStrategy {
 			
 			Pheromone unflagged = getUnflaggedPheromone(input);
 			if(unflagged!=null) {
-				if(unflagged.getPersistance()<25) {
+				if(unflagged.isWeak()) {
 					setMemory(t,r);
 					_rechargePheromone(unflagged.getId());
 					return;
@@ -95,10 +95,14 @@ public class AntStrategy3 extends AntStrategy {
 			return;
 		}
 		
-		if(pathHighestPh!=null) {
+		if(highestFlaggedPheromone!=null) {
 			// path best pheromonone : on suit la piste
+			if(highestFlaggedPheromone.isNear() && highestFlaggedPheromone.isWeak()) {
+				setMemory(t,r);
+				_rechargePheromone(highestFlaggedPheromone.getId());
+			}
 			setMemory(t,r);
-			_moveTo(pathHighestPh.getId());
+			_moveTo(highestFlaggedPheromone.getId());
 			return;
 		}
 		
@@ -109,7 +113,7 @@ public class AntStrategy3 extends AntStrategy {
 	
 	
 	
-	private Pheromone getHighestPathPheromone(InputAnt input) {
+	private Pheromone getHighestFlaggedPheromone(InputAnt input) {
 		if (input.getPheromones().isEmpty()) return null;
 
 		Pheromone best = null;
