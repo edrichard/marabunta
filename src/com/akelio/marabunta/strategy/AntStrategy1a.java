@@ -146,6 +146,9 @@ public class AntStrategy1a extends AntStrategy {
 			_explore();
 			return;
 		}
+		
+		setMemory(t,r);
+		_explore();
 	}
 	
 	
