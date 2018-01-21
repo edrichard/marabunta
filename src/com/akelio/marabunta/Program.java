@@ -12,6 +12,7 @@ import com.akelio.marabunta.input.nest.AntCount;
 import com.akelio.marabunta.input.nest.AntIn;
 import com.akelio.marabunta.input.nest.InputNest;
 import com.akelio.marabunta.input.nest.NestMemory;
+import com.akelio.marabunta.printstream.ErrHandler;
 import com.akelio.marabunta.strategy.AntStrategy;
 import com.akelio.marabunta.strategy.NestStrategy;
 
@@ -24,6 +25,8 @@ public class Program {
 	public Program(AntStrategy antStrategy, NestStrategy nestStrategy) {
 		this.antStrategy = antStrategy;
 		this.nestStrategy = nestStrategy;
+		
+		System.setErr(new ErrHandler.PrintStream1());
 
 		Debug.d("Program started");
 		

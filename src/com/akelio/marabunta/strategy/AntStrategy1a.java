@@ -193,8 +193,8 @@ public class AntStrategy1a extends AntStrategy {
 			public int compare(Pheromone o1, Pheromone o2) {
 				int d1 = o1.getDist();
 				int d2 = o2.getDist();
-				if(d1<d2) return 1;
-				if(d1>d2) return -1;
+				if(d1>d2) return 1;
+				if(d1<d2) return -1;
 				return 0;
 			}
 		});
